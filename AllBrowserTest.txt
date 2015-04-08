@@ -1,0 +1,11 @@
+*** Settings ***
+Library          Selenium2Library
+
+*** Variables ***
+${url}    http://localhost:7272/html/
+*** Test case ***
+Test run all browser
+	@{all browsers} =    Create list    firefox    chrome    ie
+	:FOR    ${browser}    IN    @{all browsers}
+	\    Open browser    ${url}    ${browser}
+	\    Close browser
