@@ -1,0 +1,23 @@
+*** Settings ***
+Library          Selenium2Library
+Suite setup     Open login page
+Test template    Workflow of login failure
+Suite teardown    Close browser
+Resource    resources/LoginResource.txt
+
+*** Variables ***
+
+*** Test Cases ***                 username     password
+Not input username and password$	${EMPTY}     ${EMPTY}
+Input only username                demo         ${EMPTY}    
+Input only password                ${EMPTY}     mode
+Input wrong username               demo1        mode
+Input wrong password               demo         1234
+Alter username and password        mode         demo
+
+*** Keywords ***
+Workflow of login failure
+	[Arguments]    ${username}    ${password}
+	Go to    ${BASE URL}
+	Input    ${username}    ${password}
+	Check error page

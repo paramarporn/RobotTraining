@@ -1,0 +1,38 @@
+*** Settings ***
+Library          Selenium2Library
+Test teardown    Close browser
+Resource    resources/LoginResource.txt
+
+*** Variables ***
+
+*** Test Cases ***
+Not input username and password
+	Open login page
+	Input     ${EMPTY}    ${EMPTY}
+	Check error page
+
+Input only username
+	Open login page
+	Input     demo    ${EMPTY}
+	Check error page
+
+Input only password
+	Open login page
+	Input     ${EMPTY}    mode
+	Check error page
+
+Login wrong username
+	Open login page
+	Input     demo1    ${EMPTY}
+	Check error page
+
+Login wrong password
+	Open login page
+	Input     demo    {1234}
+	Check error page
+
+Alter username and password
+	Open login page
+	Input     mode    demo
+	Check error page
+

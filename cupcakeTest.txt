@@ -1,0 +1,20 @@
+*** Settings ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** Test Cases ***
+Search cupcake
+	goto Google
+	search keyword cupcake
+	found word cupcake
+	[Teardown]    Close Browser
+
+*** Keywords ***
+goto Google
+	Open Browser    http://www.google.com
+search keyword cupcake
+	Input Text    q    cupcake
+	Click Button    btnG
+found word cupcake
+	Wait Until Page Contains    cupcake

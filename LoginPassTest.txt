@@ -1,0 +1,19 @@
+*** Settings ***
+Library          Selenium2Library
+Test teardown    Close browser
+Resource    resources/LoginResource.txt
+
+*** Variables ***
+${user input}    demo
+${password input}    mode
+
+*** Test Cases ***
+Login pass 1
+	[Documentation]    Login pass with
+	...
+	...    username=demo
+	...    password=mode
+	[Tags]   group1
+	Open login page
+	Input     ${user input}    ${password input}
+	Check welcome page

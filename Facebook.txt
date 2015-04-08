@@ -1,0 +1,13 @@
+*** Settings ***
+Library          Selenium2Library
+#Test teardown    Close browser
+
+*** Test Cases ***
+Post Facebook status
+	Open Browser    https://www.facebook.com/
+	Input Text    email    paramarporn@gmail.com
+	Input text    pass    arare501
+	Click button    เข้าสู่ระบบ
+	Click element    u_0_z
+	Input text    u_0_z    สวัสดี robot framework
+	Click button    Post
