@@ -1,0 +1,34 @@
+*** Variables ***
+${BASE URL}    http://localhost:7272/html/
+${welcome page}    welcome.html
+${error page}    error.html
+${logout text}    logout
+
+*** Keywords ***
+Open login page
+	Open Browser    ${BASE URL}
+Input
+	[Arguments]    ${user name}    ${password}
+	Input Text    username_field    ${user name}
+	Input Text    password_field    ${password}
+	Click Button     LOGIN
+Check welcome page
+	Check title    Welcome Page
+	Check logout link
+	Check url    ${BASE URL}${welcome page}	
+
+Check error page
+	Check title    Error Page
+	Page should contain    Login failed
+	Check url    ${BASE URL}${error page}
+Check logout link
+	Page Should Contain Link    xpath=//p/a
+	${logout link} =    Get Text    xpath=//p/a
+	Log To Console    ${logout link}
+	Should Be Equal As Strings    ${logout link}    ${logout text}
+Check url
+	[Arguments]    ${url}
+	Location should Be    ${url}
+Check title
+	[Arguments]    ${title}
+	Title Should Be    ${title}
